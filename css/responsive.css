@@ -1,0 +1,153 @@
+/*--------------------------------------------------------------------- File Name: responsive.css ---------------------------------------------------------------------*/
+
+@media (min-width: 1200px) and (max-width: 1342px) {
+    
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .navigation.navbar-dark .navbar-nav .nav-link {
+      margin: 0 0px;
+    }
+   
+
+    .testimonial_Carousel .test_box span {
+
+    font-size: 21px;}
+    ul.location_icon li {padding-right: 12px; font-size: 15px;}
+    ul.link_icon li a {font-size: 16px;}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .navigation.navbar-dark .navbar-nav .nav-link {
+      padding: 25px 10px;
+
+margin: 0 0px;
+    }
+    .sign_btn {max-width: 128px;
+font-size: 14px !important;}
+    .text-bg h1 {
+font-size: 39px;
+line-height: 49px;
+    }
+    .about_box {max-width: inherit; margin-bottom: 30px;}
+    .titlepage h2 {
+      font-size: 27px;
+    }
+   
+    .ho_socal {width: 190px;
+height: 187px;}
+    .testimonial_Carousel .test_box span {font-size: 15px;
+margin-left: 7px;}
+    ul.location_icon li {font-size: 14px;
+padding-right: 10px;}
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+
+
+
+    .text-bg {padding-top: 30px; margin-bottom: 30px;}
+    .text-bg h1 {font-size: 52px;
+
+line-height: 66px;}
+    
+   .about_box {margin-bottom: 30px;}
+   .ho_socal {width: 217px;
+height: 214px;}
+
+.d_none1 {display: none;}
+.titlepage h2 {font-size: 28px;}
+ul.conta_icon li a {font-size: 12px;}
+    .navigation.navbar {
+        float: left;
+        display: inherit !important;
+        padding: 0;
+        width: 100%;
+        padding-top: 12px;
+    }
+    .navigation .navbar-collapse {
+        background: #000;
+        padding: 20px;
+       margin-top: 58px;
+        position: absolute;
+        width: 100%;
+        margin-right: 20px;
+        z-index: 999;
+    }
+    .navigation.navbar-dark .navbar-nav .nav-link {
+       padding: 10px 10px
+        color: #fff;
+    }
+    .navigation.navbar-dark .navbar-toggler {
+        border: inherit;
+        float: left;
+        padding: 0;
+        margin-top: 15px;
+    }
+    .navigation.navbar-dark .navbar-toggler-icon {
+        background: url(../images/menu_icon.png);
+        background-repeat: no-repeat;
+    }
+    .margin_bottom1 {
+        margin-bottom: 30px !important;
+    }
+}
+
+@media (max-width: 575px) {
+   
+    .logo {
+        text-align: center !important;
+        padding-bottom: 6px;
+       text-align: center;
+    }
+    .d_none {display: none;}
+    .text-bg {margin-bottom: 30px; padding-top: 0;}
+    .text-bg h1 {
+font-size: 28px;
+line-height: 38px;
+    }
+    .titlepage h2 {
+        font-size: 27px;
+    }
+    .about_box {margin-bottom: 30px;}
+    .service .read_more {margin: inherit;}
+    .d_none1 {display: none;}
+   .ho_socal {width: 228px;
+
+
+height: 231px;}
+    .testimonial_Carousel .carousel-indicators {bottom: -4px;}
+    .navigation.navbar {
+        float: right;
+        display: inherit !important;
+        padding: 0;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .navigation .navbar-collapse {
+        background: #000;
+        padding: 20px;
+       margin-top: 50px;
+        position: absolute;
+        width: 100%;
+        margin-right: 20px;
+        z-index: 999;
+    }
+    .navigation.navbar-dark .navbar-nav .nav-link {
+        padding: 10px 10px;
+        color: #fff;
+    }
+    .navigation.navbar-dark .navbar-toggler {
+        float: right;
+        margin-right: 2px;
+        border: inherit;
+    }
+    .testimonial_box {
+        padding: 0px 19px 40px 20px;
+    }
+    .navigation.navbar-dark .navbar-toggler-icon {
+        background: url(../images/menu_icon.png);
+        background-repeat: no-repeat;
+    }
+}
+
