@@ -1,11 +1,39 @@
+<?php
+session_start();
+include("connection.php");
+include("functions.php");
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    // something was posted
+    $user_name = $_POST['user_name'];
+    $password = $_POST['password'];
+
+    if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+    {
+        // save to database
+        // $user_id = random_num(20);
+        $query = "insert into users (user_name, password) values ('$user_name', '$password')";
+
+        mysqli_query($con, $query);
+        header("Location: login.php");
+        die;
+    }else{
+        echo "Please enter valid information";
+    }
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
       <title>Cloud-Inspector</title>
@@ -26,21 +54,34 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-   </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-      </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
+</head>
+<body>
+    <style type="text/css">
+        #text{
+            height: 25px;
+            border-radius: 5px;
+            padding: 4px;
+            border: solid thin #aaa;
+        }
+        #button{
+            padding: 10px;
+            width: 100px;
+            color: white;
+            background-color: lightblue;
+            border: none;
+        }
+        #box{
+            background-color: grey;
+            margin: auto;
+            width: 300px;
+            padding: 20px;
+        }
+    </style>
+
+        <!-- header -->
+        <header>
          <!-- header inner -->
-         <div class="header">
+         <div class="header" style="margin-bottom: 20px;">
             <div class="header_to d_none">
                <div class="container">
                   <div class="row">
@@ -90,7 +131,7 @@
                      </div>
                      <div class="col-md-4 col-sm-4 d_none">
                         <ul class="conta_icon ">
-                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> abdullahrashid059@gmail.com</a> </li>
+                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>abdullahrashid059@gmail.com</a> </li>
                         </ul>
                      </div>
                   </div>
@@ -106,75 +147,64 @@
                            </button>
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
-                                 <li class="nav-item ">
+                                 <li class="nav-item">
                                     <a class="nav-link" href="index.html"> Home  </a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="about.html">Cloud Services</a>
                                  </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="service.html">Services We Offer</a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="team.html">team </a>
-                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="FAQ.html">FAQ</a>
-                                 </li>
                                  <li class="nav-item active">
-                                    <a class="nav-link" href="contact.html"> contact us </a>
+                                    <a class="nav-link" href="service.php">Services We Offer</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="team.html">Team </a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="FAQ.php">FAQ</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="contact.php"> Contact us </a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="logout.php"> <?php if($_SESSION) { echo "Logout"; } ?> </a>
                                  </li>
                               </ul>
                            </div>
                         </nav>
                      </div>
-                     
+
                   </div>
                </div>
             </div>
          </div>
       </header>
-      <!-- end header inner -->
-      <!-- end header -->
-   
-      <!-- contact  section -->
-      <div id="contact" class="contact ">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2><strong class="yellow">Contact us</strong><br>Send us your queries , which will be analyzed by experts</h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-8 offset-md-2">
-                  <form id="post_form" class="contact_form">
-                     <div class="row">
-                        <div class="col-md-12 ">
-                           <input class="contact_control" placeholder=" Name" type="type" name="Name"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contact_control" placeholder="Email" type="type" name="Email"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contact_control" placeholder="Phone Number " type="type" name="Phone Number ">                          
-                        </div>
-                        <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message </textarea>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="send_btn">Send</button>
-                        </div>
-                  </form>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end contact  section -->
-      <!--  footer -->
-   <footer>
+
+        <?php 
+            if (!$_SESSION) {
+                
+                ?>
+
+    <div id="box">
+        <form method="post">
+            <div style="font-size: 20px; margin: 10px; color: white;">Signup</div>
+            <input id="text" type="text" name="user_name"><br><br>
+            <input id="text" type="password" name="password"><br><br>
+            <input id="button" type="submit" value="Signup"><br><br>
+
+            <a href="login.php">Click to Login</a><br><br>
+        </form>
+    </div>
+
+    <?php
+            }
+            else {
+                echo "Already Logged In";
+            }
+        ?>
+
+    
+
+    <footer>
       <div class="footer">
          <div class="container">
             <div class="row">
@@ -207,10 +237,10 @@
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li> <a href="service.html"> </i>Services We Offer</a></li>
+                     <li class="active"> <a href="service.html"> </i>Services We Offer</a></li>
                      <li> <a href="team.html"></i>Team</a></li>
-                     <li> <a href="FAQ.html"></i>FAQ</a></li>
-                     <li class="active"> <a href="contact.html"></i>Contact us</a></li>
+                     <li> <a href="FAQ.php"></i>FAQ</a></li>
+                     <li> <a href="contact.php"></i>Contact us</a></li>
                   </ul>
                </div>
                <div class="col-lg-3 col-md-6 col-sm-6">
@@ -235,15 +265,6 @@
          </div>
       </div>
    </footer>
-   <!-- end footer -->
-   <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/owl.carousel.min.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+
+</body>
 </html>

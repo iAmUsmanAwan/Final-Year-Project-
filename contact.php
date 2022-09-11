@@ -1,3 +1,47 @@
+   <?php
+   $insert = false;
+      if(isset($_POST['name'])){
+
+      // set connection variables
+      $server ="localhost";
+      $username ="root";
+      $password ="";
+
+      // create a database connection
+      $con = mysqli_connect($server, $username, $password);
+
+      // check for connection success
+      if(!$con){
+         die("connection to the server failed due to " . mysqli_connect_error());
+      }
+      // echo"Success connecting to the db";
+
+      // collect post variables
+      $name = $_POST['name'];
+      $email = $_POST['email'];
+      $phone_no = $_POST['phone_no'];
+      $message = $_POST['message'];
+      $sql = "INSERT INTO `cms` . `user` (`name`, `email`, `phone_no`, `message`) VALUES ('$name', '$email', '$phone_no', '$message');";
+      // echo $sql;
+
+      // execute the query
+      if($con->query($sql)==true){
+         // echo "Successfully inserted";
+         
+         // flag for successful insertion
+         $insert = true;
+      }
+      else{
+         echo"ERRROR: $sql <br> $con->error";
+      }
+
+      // close the connection
+      $con->close();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -90,7 +134,7 @@
                      </div>
                      <div class="col-md-4 col-sm-4 d_none">
                         <ul class="conta_icon ">
-                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>abdullahrashid059@gmail.com</a> </li>
+                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> abdullahrashid059@gmail.com</a> </li>
                         </ul>
                      </div>
                   </div>
@@ -106,29 +150,29 @@
                            </button>
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
-                                 <li class="nav-item">
+                                 <li class="nav-item ">
                                     <a class="nav-link" href="index.html"> Home  </a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="about.html">Cloud Services</a>
                                  </li>
-                                 <li class="nav-item active">
+                                 <li class="nav-item">
                                     <a class="nav-link" href="service.html">Services We Offer</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="team.html">Team </a>
+                                    <a class="nav-link" href="team.html">team </a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="FAQ.html">FAQ</a>
+                                    <a class="nav-link" href="FAQ.php">FAQ</a>
                                  </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html"> Contact us </a>
+                                 <li class="nav-item active">
+                                    <a class="nav-link" href="contact.php"> contact us </a>
                                  </li>
                               </ul>
                            </div>
                         </nav>
                      </div>
-
+                     
                   </div>
                </div>
             </div>
@@ -136,39 +180,51 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
- 
-      <!-- service section -->
-      <div id="service" class="service">
+   
+      <!-- contact  section -->
+      <div id="contact" class="contact ">
          <div class="container">
             <div class="row">
-               <div class="col-md-7">
+               <div class="col-md-12">
                   <div class="titlepage">
-                     <h2><strong class="yellow">serviceS offered by us</strong><br> WE PROVIDE VERY IMPORTANT FEATURES, </BR> TO LET THE USER COMPARE TWO SERVICES OR SEARCH FOR THE REQUIRED CLOUD SERVICE</h2>
+                     <h2><strong class="yellow">Contact us</strong><br>Send us your queries , which will be analyzed by experts</h2>
                   </div>
                </div>
             </div>
+            
+            <?php
+            if($insert==true){
+               echo "<p class='submitMsg'>Thanks for contacting us , We will send you feedback soon </p>";
+            }
+            ?>
+
             <div class="row">
-               <div class="col-md-4 col-sm-6">
-                  <div id="ho_color" class="service_box">
-                     <img src="images/service_icon5.png" alt="#"/>
-                     <h3>SEARCH FOR THE CLOUD SERVICE</h3>
-                     <p>Lorem Ipsum is simply dummy text of the printing and1500s, </p>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div id="ho_color" class="service_box">
-                     <img src="images/service_icon6.png" alt="#"/>
-                     <h3>COMPARISON SYSTEM</h3>
-                     <p>Lorem Ipsum is simply dummy text of the printing and1500s, </p>
+               <div class="col-md-8 offset-md-2">
+                  <form id="post_form" class="contact_form" method="post">
+                     <div class="row">
+                        <div class="col-md-12 ">
+                           <input class="contact_control" placeholder="Please enter your name" type="text" name="name" id="name"> 
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contact_control" placeholder="Please enter your email" type="email" name="email" id="email"> 
+                        </div>
+                        <div class="col-md-12">
+                           <input class="contact_control" placeholder="Please enter your phone number " type="phone" name="phone_no"  id="phone_no">                          
+                        </div>
+                        <div class="col-md-12">
+                           <textarea class="textarea" placeholder="Please enter your message or query here" type="type" name="message" id="message"> </textarea> 
+                        </div>
+                        <div class="col-md-12">
+                           <button class="send_btn">Send</button>
+                        </div>
+                  </form>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      </div>
-      <!-- service section -->
-
-         <!--  footer -->
+      <!-- end contact  section -->
+      <!--  footer -->
    <footer>
       <div class="footer">
          <div class="container">
@@ -202,10 +258,10 @@
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li class="active"> <a href="service.html"> </i>Services We Offer</a></li>
+                     <li> <a href="service.html"> </i>Services We Offer</a></li>
                      <li> <a href="team.html"></i>Team</a></li>
-                     <li> <a href="FAQ.html"></i>FAQ</a></li>
-                     <li> <a href="contact.html"></i>Contact us</a></li>
+                     <li> <a href="FAQ.php"></i>FAQ</a></li>
+                     <li class="active"> <a href="contact.php"></i>Contact us</a></li>
                   </ul>
                </div>
                <div class="col-lg-3 col-md-6 col-sm-6">
@@ -230,8 +286,8 @@
          </div>
       </div>
    </footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
+   <!-- end footer -->
+   <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>

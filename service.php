@@ -1,3 +1,83 @@
+<?php 
+session_start();
+if(isset($_POST['price'])){
+
+// set connection variables
+$server ="localhost";
+$username ="root";
+$password ="";
+
+// create a database connection
+$con = mysqli_connect($server, $username, $password);
+
+// check for connection success
+if(!$con){
+   die("connection to the server failed due to " . mysqli_connect_error());
+}
+// echo"Success connecting to the db";
+
+$cloud_services = $_POST['cloud-services'];
+$pricing_mode = $_POST['pricing-mode'];
+$price = $_POST['price'];
+
+$sql = "SELECT * FROM `cms` . `".$cloud_services."` WHERE `price` <= '".$price."' AND `pricing_mode`='".$pricing_mode."'";
+
+$result = $con->query($sql);
+
+if ($result->num_rows > 0) {
+   // output data of each row
+   
+      ?>
+
+         <div class="table-responsive">
+         <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Pricing Mode</th>
+      <th scope="col">Establishment Year</th>
+      <th scope="col">Version</th>
+      <th scope="col">Price</th>
+      <th scope="col">Storage</th>
+      <th scope="col">Compatible Version</th>
+      <th scope="col">Run Time</th>
+      <th scope="col">Application</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <?php 
+      while($row = $result->fetch_assoc()) {
+         
+         ?>
+
+            <td><?php echo $row["name"] ?></td>
+            <td><?php echo $row["pricing_mode"] ?></td>
+            <td><?php echo $row["establishment_year"] ?></td>
+            <td><?php echo $row["version"] ?></td>
+            <td><?php echo $row["price"] ?></td>
+            <td><?php echo $row["storage"] ?></td>
+            <td><?php echo $row["compatible_browser"] ?></td>
+            <td><?php echo $row["runtime"] ?></td>
+            <td><?php echo $row["application"] ?></td>
+
+         <?php
+      }
+      ?>
+    </tr>
+  </tbody>
+</table>
+         </div>
+
+      <?php
+   
+}
+// close the connection
+$con->close();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -32,6 +112,7 @@
    </head>
    <!-- body -->
    <body class="main-layout">
+      
       <!-- loader  -->
       <div class="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="#" /></div>
@@ -39,19 +120,18 @@
       <!-- end loader -->
       <!-- header -->
       <header>
+         <!-- header inner -->
          <div class="header">
             <div class="header_to d_none">
                <div class="container">
                   <div class="row">
                      <div class="col-md-6 col-sm-6">
                         <ul class="lan">
-                           <li><i class="fa fa-globe" aria-hidden="true"></i> Language : <img src="images/fleg.png"
-                                 alt="#" /></li>
+                           <li><i class="fa fa-globe" aria-hidden="true"></i> Language : <img src="images/fleg.png" alt="#"/></li>
                         </ul>
-                        <form action="#">
+                        <form action="#" >
                            <div class="select-box">
-                              <label for="select-box1" class="label select-box1"><span class="label-desc">English</span>
-                              </label>
+                              <label for="select-box1" class="label select-box1"><span class="label-desc">English</span> </label>
                               <select id="select-box1" class="select">
                                  <option value="Choice 1">English</option>
                                  <option value="Choice 1">Russian</option>
@@ -83,17 +163,15 @@
                   <div class="row d_flex">
                      <div class="col-md-4 col-sm-4 d_none">
                         <ul class="conta_icon">
-                           <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Call Us : +92 3095219445</a>
-                           </li>
+                           <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Call Us : +92 3095219445</a> </li>
                         </ul>
                      </div>
-                     <div class="col-md-4 col-sm-4 ">
-                        <a class="logo" href="#"><img src="images/logo.png" alt="#" /></a>
+                     <div class="col-md-4 col-sm-4 " >
+                        <a class="logo" href="#"><img src="images/logo.png" alt="#"/></a>
                      </div>
                      <div class="col-md-4 col-sm-4 d_none">
                         <ul class="conta_icon ">
-                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>
-                                 abdullahrashid059@gmail.com</a> </li>
+                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>abdullahrashid059@gmail.com</a> </li>
                         </ul>
                      </div>
                   </div>
@@ -104,36 +182,37 @@
                   <div class="row">
                      <div class="col-md-9 col-sm-7">
                         <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                           <button class="navbar-toggler" type="button" data-toggle="collapse"
-                              data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
-                              aria-label="Toggle navigation">
-                              <span class="navbar-toggler-icon"></span>
+                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
                            </button>
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
                                  <li class="nav-item">
-                                    <a class="nav-link" href="index.html"> Home </a>
+                                    <a class="nav-link" href="index.html"> Home  </a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="about.html">Cloud services</a>
+                                    <a class="nav-link" href="about.html">Cloud Services</a>
                                  </li>
-                                 <li class="nav-item">
+                                 <li class="nav-item active">
                                     <a class="nav-link" href="service.html">Services We Offer</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="team.html">Team </a>
                                  </li>
-                                 <li class="nav-item active">
-                                    <a class="nav-link" href="FAQ.html">FAQ</a>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="FAQ.php">FAQ</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="contact.html"> Contact us </a>
+                                    <a class="nav-link" href="contact.php"> Contact us </a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="logout.php"> <?php if($_SESSION) { echo "Logout"; } ?> </a>
                                  </li>
                               </ul>
                            </div>
                         </nav>
                      </div>
-   
+
                   </div>
                </div>
             </div>
@@ -141,84 +220,100 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-      <!-- banner -->
-   
-   <!-- testimonial -->
-   <div id="client" class="testimonial">
-      <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="titlepage">
-                  <h2><strong class="yellow">FAQ</strong><br>Some Basics about the Cloud Services</h2>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div id="testimo" class="carousel slide testimonial_Carousel " data-ride="carousel">
-         <ol class="carousel-indicators">
-            <li data-target="#testimo" data-slide-to="0" class="active"></li>
-            <li data-target="#testimo" data-slide-to="1"></li>
-            <li data-target="#testimo" data-slide-to="2"></li>
-         </ol>
-         <div class="carousel-inner">
-            <div class="carousel-item active">
-               <div class="container">
-                  <div class="carousel-caption ">
-                     <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                           <div class="test_box">
-                              <p>Cloud computing is the on-demand availability of computer system resources, especially data storage (cloud storage) and computing power, without direct active management by the user. Large clouds often have functions distributed over multiple locations, each location being a data center.</p>
-                              <i style="width:83px;height:79px;"><img src="images/cos1.jpg" alt="#" /></i> <span>Wikipedia</span>
-                           </div>
-                        </div>
-                     </div>
+ 
+      <?php 
+         if ($_SESSION) {
+      ?>
+
+      <!-- service section -->
+      <div id="service" class="service">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2><strong class="yellow">serviceS offered by us</strong><br> WE PROVIDE VERY IMPORTANT FEATURES, </BR> TO LET THE USER COMPARE TWO SERVICES OR SEARCH FOR THE REQUIRED CLOUD SERVICE</h2>
                   </div>
                </div>
             </div>
-            <div class="carousel-item">
-               <div class="container">
-                  <div class="carousel-caption">
-                     <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                           <div class="test_box">
-                              <p>Cloud computing is when computing services are provided by a company or place outside of where they are being used. It is like the way in which electricity is sent to users: they simply use the electricity that is sent to them and do not need to worry where the electricity is from or how it is made and brought to them. Every month, they pay only for what they used and nothing more.</p>
-                              <i style="width:83px;height:79px;"><img src="images/cos2.jpg" alt="#" /></i> <span>Simple.Wikipedia</span>
-                           </div>
-                        </div>
-                     </div>
+            <div class="row">
+               <div class="col-md-4 col-sm-6">
+                  <div id="ho_color" class="service_box">
+                     <img src="images/service_icon5.png" alt="#"/>
+                     <h3 data-toggle="modal" data-target="#exampleModal" style="cursor: pointer">SEARCH FOR THE CLOUD SERVICE</h3>
+                     <p>Easily search and view cloud service and the specifications of the cloud services.</p>
                   </div>
                </div>
-            </div>
-            <div class="carousel-item">
-               <div class="container">
-                  <div class="carousel-caption">
-                     <div class="row">
-                        <div class="col-md-6 offset-md-3">
-                           <div class="test_box">
-                              <p>Based on the thinking from the concepts of SOA and virtualization,  everything in
-                                 the cloud environments is considered as a service (usually abbreviated as XaaS), e.g.,
-                                 Hardware-as-a-Service, Storage-as-a-Service, Database-as-a-Service, and Security-as-a-Service, Trust-as-a-Service. In general, all cloud services can be typically
-                                 classified into three service models: Infrastructure-as-a-Service, Platform-as-a-Service 
-                                 and Software-as-a-Service</p>
-                              <i><img src="images/cos.jpg" alt="#" /></i> <span>Researcher</span>
-                           </div>
-                        </div>
-                     </div>
+               <div class="col-md-4 col-sm-6">
+                  <div id="ho_color" class="service_box">
+                     <img src="images/service_icon6.png" alt="#"/>
+                     <h3>COMPARISON SYSTEM</h3>
+                     <p>Easily compare cloud services, and decide which is best for your business.</p>
                   </div>
                </div>
             </div>
          </div>
-         <a class="carousel-control-prev" href="#testimo" role="button" data-slide="prev">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-         </a>
-         <a class="carousel-control-next" href="#testimo" role="button" data-slide="next">
-            <i class="fa fa-chevron-right" aria-hidden="true"></i>
-         </a>
       </div>
-   </div>
-   <!-- end testimonial -->
-   
-   <!--  footer -->
+      </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Suggest Best Cloud Service</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      <form method="POST">
+  <div class="form-group">
+    <label for="cloud-services">Cloud Services</label><br>
+    <select id="cloud-services" name="cloud-services">
+      <option value="">Select your Cloud Services</option>
+      <option value="iaas">IAAS</option>
+      <option value="paas">PAAS</option>
+      <option value="saas">SAAS</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="pricing-mode">Pricing Mode</label><br>
+    <select id="pricing-mode" name="pricing-mode">
+      <option value="">Select your Cloud Services Pricing Mode</option>
+      <option value="Hourly">Hourly</option>
+      <option value="Monthly">Monthly</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label><br>
+    <input id="price"placeholder="Price" name="price" />
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+      <!-- service section -->
+
+      <?php } 
+         else {
+            ?>
+
+            <div>
+               <h1>You need to Login to access this page.</h1>
+               <a href="login.php">Click Here to Login</a>
+            </div>
+
+            <?php
+         }
+      ?>
+         <!--  footer -->
    <footer>
       <div class="footer">
          <div class="container">
@@ -252,10 +347,10 @@
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li> <a href="service.html"> </i>Services We Offer</a></li>
+                     <li class="active"> <a href="service.html"> </i>Services We Offer</a></li>
                      <li> <a href="team.html"></i>Team</a></li>
-                     <li class="active"> <a href="FAQ.html"></i>FAQ</a></li>
-                     <li> <a href="contact.html"></i>Contact us</a></li>
+                     <li> <a href="FAQ.php"></i>FAQ</a></li>
+                     <li> <a href="contact.php"></i>Contact us</a></li>
                   </ul>
                </div>
                <div class="col-lg-3 col-md-6 col-sm-6">
@@ -280,8 +375,7 @@
          </div>
       </div>
    </footer>
-   <!-- end footer -->
-
+      <!-- end footer -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>

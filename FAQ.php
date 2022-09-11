@@ -1,3 +1,30 @@
+<?php
+
+      // set connection variables
+      $server ="localhost";
+      $username ="root";
+      $password ="";
+
+      // create a database connection
+      $con = mysqli_connect($server, $username, $password);
+
+      // check for connection success
+      if(!$con){
+         die("connection to the server failed due to " . mysqli_connect_error());
+      }
+      // echo"Success connecting to the db";
+
+      $sql = "SELECT * FROM `cms` . `faq`";
+      // echo $sql;
+
+      $result = $con->query($sql);
+
+      // close the connection
+      $con->close();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -39,23 +66,24 @@
       <!-- end loader -->
       <!-- header -->
       <header>
-         <!-- header inner -->
          <div class="header">
             <div class="header_to d_none">
                <div class="container">
                   <div class="row">
                      <div class="col-md-6 col-sm-6">
                         <ul class="lan">
-                           <li><i class="fa fa-globe" aria-hidden="true"></i> Language : <img src="images/fleg.png" alt="#"/></li>
+                           <li><i class="fa fa-globe" aria-hidden="true"></i> Language : <img src="images/fleg.png"
+                                 alt="#" /></li>
                         </ul>
-                        <form action="#" >
+                        <form action="#">
                            <div class="select-box">
-                              <label for="select-box1" class="label select-box1"><span class="label-desc">English</span> </label>
+                              <label for="select-box1" class="label select-box1"><span class="label-desc">English</span>
+                              </label>
                               <select id="select-box1" class="select">
                                  <option value="Choice 1">English</option>
                                  <option value="Choice 1">Russian</option>
                                  <option value="Choice 2">Chinese</option>
-                                 <option value="Choice 3">Japanese</option>        
+                                 <option value="Choice 3">Japanese</option>
                               </select>
                            </div>
                         </form>
@@ -82,15 +110,17 @@
                   <div class="row d_flex">
                      <div class="col-md-4 col-sm-4 d_none">
                         <ul class="conta_icon">
-                           <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Call Us : +92 3095219445</a> </li>
+                           <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Call Us : +92 3095219445</a>
+                           </li>
                         </ul>
                      </div>
-                     <div class="col-md-4 col-sm-4 " >
-                        <a class="logo" href="#"><img src="images/logo.png" alt="#"/></a>
+                     <div class="col-md-4 col-sm-4 ">
+                        <a class="logo" href="#"><img src="images/logo.png" alt="#" /></a>
                      </div>
                      <div class="col-md-4 col-sm-4 d_none">
                         <ul class="conta_icon ">
-                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>abdullahrashid059@gmail.com</a> </li>
+                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                 abdullahrashid059@gmail.com</a> </li>
                         </ul>
                      </div>
                   </div>
@@ -101,34 +131,36 @@
                   <div class="row">
                      <div class="col-md-9 col-sm-7">
                         <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                           <span class="navbar-toggler-icon"></span>
+                           <button class="navbar-toggler" type="button" data-toggle="collapse"
+                              data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+                              aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
                            </button>
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
-                                 <li class="nav-item ">
-                                    <a class="nav-link" href="index.html"> Home  </a>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="index.html"> Home </a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="about.html">Cloud Services</a>
+                                    <a class="nav-link" href="about.html">Cloud services</a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="service.html">Services We Offer</a>
                                  </li>
-                                 <li class="nav-item active">
-                                    <a class="nav-link" href="team.html">team </a>
-                                 </li>
                                  <li class="nav-item">
+                                    <a class="nav-link" href="team.html">Team </a>
+                                 </li>
+                                 <li class="nav-item active">
                                     <a class="nav-link" href="FAQ.php">FAQ</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="contact.php"> contact us </a>
+                                    <a class="nav-link" href="contact.php"> Contact us </a>
                                  </li>
                               </ul>
                            </div>
                         </nav>
                      </div>
-                     
+   
                   </div>
                </div>
             </div>
@@ -136,79 +168,107 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-     
-      <!-- team  section -->
-      <div id="team" class="team">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2><strong class="yellow">Team</strong><br>We Have a Professional Team of Cloud Services Analysts.</h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">
-                  <div id="team" class="carousel slide team_Carousel " data-ride="carousel">
-                     <!-- <ol class="carousel-indicators">
-                        <li data-target="#team" data-slide-to="0" class="active"></li>
-                        <li data-target="#team" data-slide-to="1"></li>
-                        <li data-target="#team" data-slide-to="2"></li>
-                     </ol> -->
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption ">
-                                 <div class="row">
-                                    <div class="col-md-4 col-sm-6">
-                                       <div id="ho_bg" class="team_img">
-                                          <img src="images/team1.png" alt="#"/>
-                                          <div class="ho_socal">
-                                             <ul class="social_icont">
-                                                <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li> <a href="#">   <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                             </ul>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                       <div id="ho_bg"  class="team_img">
-                                          <img src="images/team2.png" alt="#"/>
-                                          <div class="ho_socal">
-                                             <ul class="social_icont">
-                                                <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li> <a href="#">   <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                             </ul>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- <a class="carousel-control-prev" href="#team" role="button" data-slide="prev">
-                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                     </a>
-                     <a class="carousel-control-next" href="#team" role="button" data-slide="next">
-                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                     </a> -->
-                  </div>
+      <!-- banner -->
+   
+   <!-- testimonial -->
+   <div id="client" class="testimonial">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="titlepage">
+                  <h2><strong class="yellow">FAQ</strong><br>Some Basics about the Cloud Services</h2>
                </div>
             </div>
          </div>
       </div>
-      <!-- end team  section -->
+      <div id="testimo" class="carousel slide testimonial_Carousel " data-ride="carousel">
+         <!-- <ol class="carousel-indicators">
+            <li data-target="#testimo" data-slide-to="0" class="active"></li>
+            <li data-target="#testimo" data-slide-to="1"></li>
+            <li data-target="#testimo" data-slide-to="2"></li>
+         </ol> -->
+         <div class="carousel-inner">
+<?php
+
+if ($result->num_rows > 0) {
+   $count = 1;
+   // output data of each row
+   while($row = $result->fetch_assoc()) {
+      
+      ?>
+      
+      <div class="carousel-item active">
+               <div class="container">
+                  <div class="carousel-caption ">
+                     <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                           <div class="test_box">
+                              <p>
+                                 <b><?php echo $row["question"] ?></b>
+                                 <br>
+                                 <?php echo $row["answer"] ?>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+<?php
+$count += 1;
+   }
+ } else {
+   echo "0 results";
+ }
+
+?>
+            
+
+
+            <!-- <div class="carousel-item">
+               <div class="container">
+                  <div class="carousel-caption">
+                     <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                           <div class="test_box">
+                              <p>Cloud computing is when computing services are provided by a company or place outside of where they are being used. It is like the way in which electricity is sent to users: they simply use the electricity that is sent to them and do not need to worry where the electricity is from or how it is made and brought to them. Every month, they pay only for what they used and nothing more.</p>
+                              <i style="width:83px;height:79px;"><img src="images/cos2.jpg" alt="#" /></i> <span>Simple.Wikipedia</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="carousel-item">
+               <div class="container">
+                  <div class="carousel-caption">
+                     <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                           <div class="test_box">
+                              <p>Based on the thinking from the concepts of SOA and virtualization,  everything in
+                                 the cloud environments is considered as a service (usually abbreviated as XaaS), e.g.,
+                                 Hardware-as-a-Service, Storage-as-a-Service, Database-as-a-Service, and Security-as-a-Service, Trust-as-a-Service. In general, all cloud services can be typically
+                                 classified into three service models: Infrastructure-as-a-Service, Platform-as-a-Service 
+                                 and Software-as-a-Service</p>
+                              <i><img src="images/cos.jpg" alt="#" /></i> <span>Researcher</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div> -->
+         </div>
+         <a class="carousel-control-prev" href="#testimo" role="button" data-slide="prev">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+         </a>
+         <a class="carousel-control-next" href="#testimo" role="button" data-slide="next">
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+         </a>
+      </div>
+   </div>
+   <!-- end testimonial -->
+   
    <!--  footer -->
    <footer>
       <div class="footer">
@@ -244,8 +304,8 @@
                            </i>Cloud Services
                      </li>
                      <li> <a href="service.html"> </i>Services We Offer</a></li>
-                     <li class="active"> <a href="team.html"></i>Team</a></li>
-                     <li> <a href="FAQ.php"></i>FAQ</a></li>
+                     <li> <a href="team.html"></i>Team</a></li>
+                     <li class="active"> <a href="FAQ.php"></i>FAQ</a></li>
                      <li> <a href="contact.php"></i>Contact us</a></li>
                   </ul>
                </div>
@@ -272,6 +332,7 @@
       </div>
    </footer>
    <!-- end footer -->
+
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>

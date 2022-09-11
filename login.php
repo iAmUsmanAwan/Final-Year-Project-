@@ -1,8 +1,54 @@
+<?php
+session_start();
+include("connection.php");
+include("functions.php");
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    // something was posted
+    $user_name = $_POST['user_name'];
+    $password = $_POST['password'];
+
+    if(!empty($user_name) && !empty($password) && !is_numeric($user_name))
+    {
+        // read the database
+        $query = "select * from users where user_name = '$user_name' limit 1";
+
+        $result = mysqli_query($con, $query);
+
+                if($result)
+                {
+                    if($result && mysqli_num_rows($result) > 0)
+                        {
+                            $user_data = mysqli_fetch_assoc($result);
+                            
+                            if($user_data['password'] === $password)
+                            {
+                                $_SESSION['user_id'] = $user_data['user_id'];
+                                header("Location: service.php");
+
+                                die;
+                        
+                            }
+                        }
+                }
+                echo "Wrong username or password";
+    }else
+    {
+        echo "Please enter valid information";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,21 +72,34 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-   </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
-      </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
+</head>
+<body>
+    <style type="text/css">
+        #text{
+            height: 25px;
+            border-radius: 5px;
+            padding: 4px;
+            border: solid thin #aaa;
+        }
+        #button{
+            padding: 10px;
+            width: 100px;
+            color: white;
+            background-color: lightblue;
+            border: none;
+        }
+        #box{
+            background-color: grey;
+            margin: auto;
+            width: 300px;
+            padding: 20px;
+        }
+    </style>
+
+    <!-- header -->
+    <header>
          <!-- header inner -->
-         <div class="header">
+         <div class="header" style="margin-bottom: 20px;">
             <div class="header_to d_none">
                <div class="container">
                   <div class="row">
@@ -55,7 +114,7 @@
                                  <option value="Choice 1">English</option>
                                  <option value="Choice 1">Russian</option>
                                  <option value="Choice 2">Chinese</option>
-                                 <option value="Choice 3">Japanese</option>        
+                                 <option value="Choice 3">Japanese</option>
                               </select>
                            </div>
                         </form>
@@ -106,111 +165,64 @@
                            </button>
                            <div class="collapse navbar-collapse" id="navbarsExample04">
                               <ul class="navbar-nav mr-auto">
-                                 <li class="nav-item ">
+                                 <li class="nav-item">
                                     <a class="nav-link" href="index.html"> Home  </a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="about.html">Cloud Services</a>
                                  </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="service.html">Services We Offer</a>
-                                 </li>
                                  <li class="nav-item active">
-                                    <a class="nav-link" href="team.html">team </a>
+                                    <a class="nav-link" href="service.php">Services We Offer</a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="team.html">Team </a>
                                  </li>
                                  <li class="nav-item">
                                     <a class="nav-link" href="FAQ.php">FAQ</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="contact.php"> contact us </a>
+                                    <a class="nav-link" href="contact.php"> Contact us </a>
+                                 </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="logout.php"> <?php if($_SESSION) { echo "Logout"; } ?> </a>
                                  </li>
                               </ul>
                            </div>
                         </nav>
                      </div>
-                     
+
                   </div>
                </div>
             </div>
          </div>
       </header>
-      <!-- end header inner -->
-      <!-- end header -->
-     
-      <!-- team  section -->
-      <div id="team" class="team">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2><strong class="yellow">Team</strong><br>We Have a Professional Team of Cloud Services Analysts.</h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">
-                  <div id="team" class="carousel slide team_Carousel " data-ride="carousel">
-                     <!-- <ol class="carousel-indicators">
-                        <li data-target="#team" data-slide-to="0" class="active"></li>
-                        <li data-target="#team" data-slide-to="1"></li>
-                        <li data-target="#team" data-slide-to="2"></li>
-                     </ol> -->
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption ">
-                                 <div class="row">
-                                    <div class="col-md-4 col-sm-6">
-                                       <div id="ho_bg" class="team_img">
-                                          <img src="images/team1.png" alt="#"/>
-                                          <div class="ho_socal">
-                                             <ul class="social_icont">
-                                                <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li> <a href="#">   <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                             </ul>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-4 col-sm-6">
-                                       <div id="ho_bg"  class="team_img">
-                                          <img src="images/team2.png" alt="#"/>
-                                          <div class="ho_socal">
-                                             <ul class="social_icont">
-                                                <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li> <a href="#">   <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                                             </ul>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
 
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- <a class="carousel-control-prev" href="#team" role="button" data-slide="prev">
-                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
-                     </a>
-                     <a class="carousel-control-next" href="#team" role="button" data-slide="next">
-                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                     </a> -->
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end team  section -->
-   <!--  footer -->
-   <footer>
+        <?php 
+            if (!$_SESSION) {
+                
+                ?>
+
+<div id="box">
+        <form method="post" autocomplete="off">
+            <div style="font-size: 20px; margin: 10px; color: white;">Login</div>
+            <input id="text" type="text" name="user_name"><br><br>
+            <input id="text" type="password" name="password"><br><br>
+            <input id="button" type="submit" value="Login"><br><br>
+
+            <a href="signup.php">Click to Signup</a><br><br>
+        </form>
+    </div>
+
+                <?php
+            }
+            else {
+                echo "Already Logged In";
+            }
+        ?>
+
+    
+
+    <footer>
       <div class="footer">
          <div class="container">
             <div class="row">
@@ -243,8 +255,8 @@
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li> <a href="service.html"> </i>Services We Offer</a></li>
-                     <li class="active"> <a href="team.html"></i>Team</a></li>
+                     <li class="active"> <a href="service.html"> </i>Services We Offer</a></li>
+                     <li> <a href="team.html"></i>Team</a></li>
                      <li> <a href="FAQ.php"></i>FAQ</a></li>
                      <li> <a href="contact.php"></i>Contact us</a></li>
                   </ul>
@@ -271,15 +283,7 @@
          </div>
       </div>
    </footer>
-   <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/owl.carousel.min.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+
+
+</body>
 </html>
