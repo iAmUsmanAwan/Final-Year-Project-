@@ -25,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                             if($user_data['password'] === $password)
                             {
                                 $_SESSION['user_id'] = $user_data['user_id'];
+                                $_SESSION['role'] = $user_data['role'];
                                 header("Location: service.php");
 
                                 die;
@@ -255,7 +256,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li class="active"> <a href="service.html"> </i>Services We Offer</a></li>
+                     <li class="active"> <a href="service.php"> </i>Services We Offer</a></li>
                      <li> <a href="team.html"></i>Team</a></li>
                      <li> <a href="FAQ.php"></i>FAQ</a></li>
                      <li> <a href="contact.php"></i>Contact us</a></li>

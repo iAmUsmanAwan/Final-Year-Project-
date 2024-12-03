@@ -122,5 +122,3 @@ $('.owl-carousel').owlCarousel({
 
 
 
-
-

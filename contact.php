@@ -88,55 +88,18 @@
             <div class="header_to d_none">
                <div class="container">
                   <div class="row">
-                     <div class="col-md-6 col-sm-6">
-                        <ul class="lan">
-                           <li><i class="fa fa-globe" aria-hidden="true"></i> Language : <img src="images/fleg.png" alt="#"/></li>
-                        </ul>
-                        <form action="#" >
-                           <div class="select-box">
-                              <label for="select-box1" class="label select-box1"><span class="label-desc">English</span> </label>
-                              <select id="select-box1" class="select">
-                                 <option value="Choice 1">English</option>
-                                 <option value="Choice 1">Russian</option>
-                                 <option value="Choice 2">Chinese</option>
-                                 <option value="Choice 3">Japanese</option>
-                              </select>
-                           </div>
-                        </form>
-                     </div>
-                     <div class="col-md-6 col-sm-6 ">
-                        <ul class="social_icon1">
-                           <li> F0llow Us
-                           </li>
-                           <li> <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>
-                              </a>
-                           </li>
-                           <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
-                           <li> <a href="#"> <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                           <li> <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
+                     
+                     
                   </div>
                </div>
             </div>
             <div class="header_midil">
                <div class="container">
                   <div class="row d_flex">
-                     <div class="col-md-4 col-sm-4 d_none">
-                        <ul class="conta_icon">
-                           <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Call Us : +92 3095219445</a> </li>
-                        </ul>
-                     </div>
-                     <div class="col-md-4 col-sm-4 " >
+                 <div class="col-md-4 col-sm-4 " >
                         <a class="logo" href="#"><img src="images/logo.png" alt="#"/></a>
                      </div>
-                     <div class="col-md-4 col-sm-4 d_none">
-                        <ul class="conta_icon ">
-                           <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> abdullahrashid059@gmail.com</a> </li>
-                        </ul>
-                     </div>
+                     
                   </div>
                </div>
             </div>
@@ -157,11 +120,9 @@
                                     <a class="nav-link" href="about.html">Cloud Services</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a class="nav-link" href="service.html">Services We Offer</a>
+                                    <a class="nav-link" href="service.php">Services We Offer</a>
                                  </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="team.html">team </a>
-                                 </li>
+                               
                                  <li class="nav-item">
                                     <a class="nav-link" href="FAQ.php">FAQ</a>
                                  </li>
@@ -212,7 +173,7 @@
                            <input class="contact_control" placeholder="Please enter your phone number " type="phone" name="phone_no"  id="phone_no">                          
                         </div>
                         <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Please enter your message or query here" type="type" name="message" id="message"> </textarea> 
+                           <textarea class="textarea" placeholder="Please enter your message or query here" type="type" name="message" id="message"> Message or Query </textarea> 
                         </div>
                         <div class="col-md-12">
                            <button class="send_btn">Send</button>
@@ -258,20 +219,13 @@
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li> <a href="service.html"> </i>Services We Offer</a></li>
-                     <li> <a href="team.html"></i>Team</a></li>
+                     <li> <a href="service.php"> </i>Services We Offer</a></li>
+                     
                      <li> <a href="FAQ.php"></i>FAQ</a></li>
                      <li class="active"> <a href="contact.php"></i>Contact us</a></li>
                   </ul>
                </div>
-               <div class="col-lg-3 col-md-6 col-sm-6">
-                  <h3>Types of Cloud Services</h3>
-                  <ul class="link_icon">
-                     <li> <a href="#"> IaaS </a></li>
-                     <li> <a href="#"> PaaS </a></li>
-                     <li> <a href="#"> SaaS </a></li>
-                  </ul>
-               </div>
+               
                
             </div>
          </div>

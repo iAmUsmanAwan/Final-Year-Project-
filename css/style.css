@@ -1418,3 +1418,21 @@ ul.img_icon li {
 
 /** end footer **/
 
+
+
+.compare-service-div {
+     display: flex;
+     text-align: center;
+     align-items: center;
+}
+
+.compare-service-div div {
+     flex: 1;
+     height: 100%;
+}
+
+.first-service {
+     border-right: 1px solid black;
+}
+
+

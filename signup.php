@@ -185,7 +185,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 ?>
 
     <div id="box">
-        <form method="post">
+        <form method="post" autocomplete="off">
             <div style="font-size: 20px; margin: 10px; color: white;">Signup</div>
             <input id="text" type="text" name="user_name"><br><br>
             <input id="text" type="password" name="password"><br><br>
@@ -237,7 +237,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                         <a href="about.html">
                            </i>Cloud Services
                      </li>
-                     <li class="active"> <a href="service.html"> </i>Services We Offer</a></li>
+                     <li class="active"> <a href="service.php"> </i>Services We Offer</a></li>
                      <li> <a href="team.html"></i>Team</a></li>
                      <li> <a href="FAQ.php"></i>FAQ</a></li>
                      <li> <a href="contact.php"></i>Contact us</a></li>
